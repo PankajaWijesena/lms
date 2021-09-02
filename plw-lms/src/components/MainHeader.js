@@ -1,67 +1,83 @@
+import {
+    AppBar,
+    Toolbar,
+    Button,
+    ButtonGroup,
+    Typography,
+    makeStyles
+} from "@material-ui/core";
+
 function MainHeader() {
+    const styles = useStyles();
+
     return (
-        <div style={styles.container}>
-            <div style={styles.header}>
-                <h1 style={styles.headerText}>Library Management System</h1>
+        <AppBar
+            position="fixed"
+            className={styles.appBar}
+            elevation={3}
+            color="primary"
+        >
+            <div className={styles.header}>
+                <Toolbar>
+                    <Typography
+                        variant={"h2"}
+                        component={"h1"}
+                        className={styles.headerText}
+                    >
+                        Library Management System
+                    </Typography>
+                </Toolbar>
             </div>
-            <div style={styles.nav}>
-                <button
-                    style={styles.navBtn}
-                    onClick={() => console.log("Add New Book Button Clicked")}
+            <div className={styles.navBtnGroup}>
+                <ButtonGroup
+                    color="primary"
+                    aria-label="outlined primary button group"
+                    fullWidth
                 >
-                    Add New Book
-                </button>
-                <button
-                    style={styles.navBtn}
-                    onClick={() => console.log("List All Books Button Clicked")}
-                >
-                    List All Books
-                </button>
+                    <Button
+                        onClick={() =>
+                            console.log("Add New Book Button Clicked")
+                        }
+                    >
+                        Add New Book
+                    </Button>
+                    <Button
+                        onClick={() =>
+                            console.log("List All Books Button Clicked")
+                        }
+                    >
+                        List All Books
+                    </Button>
+                </ButtonGroup>
             </div>
-        </div>
+        </AppBar>
     );
 }
 
-const styles = {
-    container: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "20px 0 30px 0",
-        color: "white",
-        background: "blue"
-    },
-    header: {
-        width: "100%",
-        margin: "20px auto"
-    },
-    headerText: {
-        width: "50%",
-        margin: "0 auto",
-        textAlign: "center",
-        fontSize: "3rem"
-    },
-    nav: {
-        width: "50%",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "white",
-        borderRadius: "5px"
-    },
-    navBtn: {
-        border: "1px solid blue",
-        borderRadius: "5px",
-        background: "white",
-        color: "blue",
-        fontSize: "1rem",
-        width: "50%",
-        padding: "10px",
-        margin: "5px"
-    }
-};
+const useStyles = makeStyles(() => {
+    return {
+        appBar: {
+            width: "100%",
+            padding: "1rem 0 2rem 0",
+            alignItems: "center"
+        },
+        header: {
+            width: "100%",
+            margin: "0 auto 2rem auto"
+        },
+        headerText: {
+            width: "50%",
+            margin: "0 auto",
+            textAlign: "center"
+        },
+        navBtnGroup: {
+            width: "50%",
+            border: "0.1rem solid #3f51b5",
+            background: "white",
+            borderRadius: "5px",
+            boxShadow: "0 0 0.5rem #ffffff"
+        }
+    };
+});
 
 export default MainHeader;
