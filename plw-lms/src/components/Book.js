@@ -1,14 +1,25 @@
-import React from "react";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import {
+    Card,
+    CardHeader,
+    CardContent,
+    Typography,
+    Avatar
+} from "@material-ui/core";
+import MenuBookTwoToneIcon from "@material-ui/icons/MenuBookTwoTone";
 
 export default function Book({ book }) {
     return (
         <div>
             <Card>
-                <CardHeader title={book.title} subheader={book.isbn} />
+                <CardHeader
+                    avatar={
+                        <Avatar>
+                            <MenuBookTwoToneIcon />
+                        </Avatar>
+                    }
+                    title={book.title}
+                    subheader={book.isbn}
+                />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary">
                         Author: {book.author}

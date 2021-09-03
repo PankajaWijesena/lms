@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Container, Grid } from "@material-ui/core";
 
@@ -12,18 +12,11 @@ function ListBook({ booksList }) {
     }, [booksList]);
 
     return (
-        <div className="listbook">
+        <div style={styles.listBook}>
             <Container>
                 <Grid container>
                     {booksListView.map((book) => (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "100%",
-                                margin: "0.5rem auto"
-                            }}
-                        >
+                        <div style={styles.listBookItem}>
                             <Grid item key={Math.random() * 12345}>
                                 <Book book={book} />
                             </Grid>
@@ -34,5 +27,20 @@ function ListBook({ booksList }) {
         </div>
     );
 }
+
+const styles = {
+    listBook: {
+        display: "flex",
+        flexDirection: "column",
+        width: "50%",
+        margin: "15rem auto"
+    },
+    listBookItem: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        margin: "0.5rem auto"
+    }
+};
 
 export default ListBook;

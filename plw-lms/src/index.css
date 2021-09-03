@@ -2,10 +2,3 @@
     margin: 0;
     padding: 0;
 }
-
-.listbook {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: 250px auto;
-}
