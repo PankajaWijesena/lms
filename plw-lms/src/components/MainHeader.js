@@ -7,7 +7,7 @@ import {
     makeStyles
 } from "@material-ui/core";
 
-function MainHeader() {
+function MainHeader({ setBookListOpen, setBookAddOpen }) {
     const styles = useStyles();
 
     return (
@@ -35,16 +35,18 @@ function MainHeader() {
                     fullWidth
                 >
                     <Button
-                        onClick={() =>
-                            console.log("Add New Book Button Clicked")
-                        }
+                        onClick={() => {
+                            setBookAddOpen(true);
+                            setBookListOpen(false);
+                        }}
                     >
                         Add New Book
                     </Button>
                     <Button
-                        onClick={() =>
-                            console.log("List All Books Button Clicked")
-                        }
+                        onClick={() => {
+                            setBookListOpen(true);
+                            setBookAddOpen(false);
+                        }}
                     >
                         List All Books
                     </Button>
@@ -57,7 +59,6 @@ function MainHeader() {
 const useStyles = makeStyles(() => {
     return {
         appBar: {
-            width: "100%",
             padding: "1rem 0 2rem 0",
             alignItems: "center"
         },
