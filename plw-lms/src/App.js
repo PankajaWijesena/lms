@@ -15,6 +15,7 @@ function App() {
 
     useEffect(() => {
         getBooksList();
+        return;
     }, [booksList]);
 
     const getBooksList = () => {
@@ -31,13 +32,17 @@ function App() {
             });
     };
 
+    const addBook = async (newBook) => {
+        await firestore.collection("books").add(newBook);
+    };
+
     return (
         <div className="App">
             <MainHeader
                 setBookAddOpen={setBookAddOpen}
                 setBookListOpen={setBookListOpen}
             />
-            {bookAddOpen && <AddBook />}
+            {bookAddOpen && <AddBook onAdd={addBook} />}
             {bookListOpen && <ListBook booksList={booksList} />}
         </div>
     );

@@ -2,12 +2,19 @@ import { useState } from "react";
 
 import { TextField, Button } from "@material-ui/core";
 
-function AddBook() {
+function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
     const [isbn, setIsbn] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
     const [publisher, setPublisher] = useState("");
+
+    const [addSuccess, setAddSuccess] = useState(false);
+
+    const bookAdded = () => {
+        setAddSuccess(true);
+        setTimeout(() => setAddSuccess(false), 1000);
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -17,13 +24,17 @@ function AddBook() {
             return;
         }
 
-        console.log({ title, isbn, author, genre, publisher });
+        const newBook = { title, isbn, author, genre, publisher };
+
+        onAdd(newBook);
 
         setTitle("");
         setIsbn("");
         setAuthor("");
         setGenre("");
         setPublisher("");
+
+        bookAdded();
     };
 
     return (
@@ -83,6 +94,15 @@ function AddBook() {
                     Add Book
                 </Button>
             </form>
+
+            <div
+                style={{
+                    ...styles.addedSuccess,
+                    visibility: addSuccess ? "visible" : "hidden"
+                }}
+            >
+                The Book is Added to the Database
+            </div>
         </div>
     );
 }
@@ -96,6 +116,11 @@ const styles = {
     },
     field: {
         margin: "0 0 1rem 0"
+    },
+    addedSuccess: {
+        color: "blue",
+        fontFamily: "Roboto",
+        margin: "2rem auto"
     }
 };
 

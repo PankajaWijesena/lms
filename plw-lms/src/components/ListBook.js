@@ -9,6 +9,7 @@ function ListBook({ booksList }) {
 
     useEffect(() => {
         setBooksListView(booksList);
+        return;
     }, [booksList]);
 
     return (
