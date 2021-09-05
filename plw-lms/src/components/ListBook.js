@@ -9,15 +9,16 @@ function ListBook({ booksList }) {
 
     useEffect(() => {
         setBooksListView(booksList);
+        return;
     }, [booksList]);
 
     return (
         <div style={styles.listBook}>
             <Container>
                 <Grid container>
-                    {booksListView.map((book) => (
-                        <div style={styles.listBookItem}>
-                            <Grid item key={Math.random() * 12345}>
+                    {booksListView.map((book, index) => (
+                        <div key={index} style={styles.listBookItem}>
+                            <Grid item>
                                 <Book book={book} />
                             </Grid>
                         </div>
