@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Typography, Button } from "@material-ui/core";
 
 function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
@@ -95,14 +95,17 @@ function AddBook({ onAdd }) {
                 </Button>
             </form>
 
-            <div
+            <Typography
+                variant="body1"
+                color="primary"
                 style={{
                     ...styles.addedSuccess,
                     visibility: addSuccess ? "visible" : "hidden"
                 }}
+                role="new-book-add-success"
             >
                 The Book is Added to the Database
-            </div>
+            </Typography>
         </div>
     );
 }
