@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Typography, Button } from "@material-ui/core";
 
 function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
@@ -48,6 +48,7 @@ function AddBook({ onAdd }) {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     style={styles.field}
+                    role="new-book-title"
                 />
                 <TextField
                     id="filled-basic"
@@ -57,6 +58,7 @@ function AddBook({ onAdd }) {
                     value={isbn}
                     onChange={(e) => setIsbn(e.target.value)}
                     style={styles.field}
+                    role="new-book-isbn"
                 />
                 <TextField
                     id="filled-basic"
@@ -66,6 +68,7 @@ function AddBook({ onAdd }) {
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     style={styles.field}
+                    role="new-book-author"
                 />
                 <TextField
                     id="filled-basic"
@@ -75,6 +78,7 @@ function AddBook({ onAdd }) {
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
                     style={styles.field}
+                    role="new-book-genre"
                 />
                 <TextField
                     id="filled-basic"
@@ -84,25 +88,30 @@ function AddBook({ onAdd }) {
                     value={publisher}
                     onChange={(e) => setPublisher(e.target.value)}
                     style={styles.field}
+                    role="new-book-publisher"
                 />
                 <Button
                     type="submit"
                     color="primary"
                     variant="outlined"
                     fullWidth
+                    role="new-book-submit"
                 >
                     Add Book
                 </Button>
             </form>
 
-            <div
+            <Typography
+                variant="body1"
+                color="primary"
                 style={{
                     ...styles.addedSuccess,
                     visibility: addSuccess ? "visible" : "hidden"
                 }}
+                role="new-book-add-success"
             >
                 The Book is Added to the Database
-            </div>
+            </Typography>
         </div>
     );
 }
