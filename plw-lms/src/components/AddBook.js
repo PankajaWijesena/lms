@@ -38,7 +38,7 @@ function AddBook({ onAdd }) {
     };
 
     return (
-        <div style={styles.addbook}>
+        <div className="addbook">
             <form onSubmit={onSubmit}>
                 <TextField
                     id="filled-basic"
@@ -117,12 +117,6 @@ function AddBook({ onAdd }) {
 }
 
 const styles = {
-    addbook: {
-        display: "flex",
-        flexDirection: "column",
-        width: "50%",
-        margin: "15rem auto"
-    },
     field: {
         margin: "0 0 1rem 0"
     },

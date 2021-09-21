@@ -1,1 +1,124 @@
+.appBar {
+    display: flex;
+    padding: 1rem 0 2rem 0;
+    justify-content: center;
+    align-items: center;
+}
+.header {
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+}
+.headerText {
+    font-family: "Roboto";
+    font-size: 3vw;
+    margin: 0 auto;
+    text-align: center;
+}
+.navBtnGroup {
+    width: 50%;
+    border: 0.1rem solid #3f51b5;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 0.5rem #ffffff;
+}
 
+.addbook {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 15rem auto 0 auto;
+}
+
+@media screen and (max-width: 1600px) {
+    .headerText {
+        font-size: 3.5vw;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .headerText {
+        font-size: 3.75vw;
+    }
+    .navBtnGroup {
+        width: 60%;
+    }
+    .addbook {
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .headerText {
+        font-size: 4vw;
+    }
+    .navBtnGroup {
+        width: 65%;
+    }
+
+    .addbook {
+        width: 65%;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .headerText {
+        font-size: 4.5vw;
+    }
+    .navBtnGroup {
+        width: 70%;
+    }
+
+    .addbook {
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .headerText {
+        font-size: 5vw;
+    }
+    .navBtnGroup {
+        width: 75%;
+    }
+
+    .addbook {
+        width: 75%;
+        margin: 14rem auto 0 auto;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .headerText {
+        font-size: 6vw;
+    }
+    .navBtnGroup {
+        width: 80%;
+    }
+
+    .addbook {
+        width: 80%;
+        margin: 13rem auto 0 auto;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .headerText {
+        font-size: 6.5vw;
+    }
+    .navBtnGroup {
+        width: 90%;
+    }
+
+    .addbook {
+        width: 90%;
+        margin: 12rem auto 0 auto;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .headerText {
+        font-size: 6rem;
+    }
+    .navBtnGroup {
+        width: 80rem;
+    }
+
+    .addbook {
+        width: 80rem;
+        margin: 18rem auto 0 auto;
+    }
+}
