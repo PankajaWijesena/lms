@@ -29,6 +29,19 @@
     margin: 15rem auto 0 auto;
 }
 
+.listBook {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 15rem auto 0 auto;
+}
+.listBookItem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
 @media screen and (max-width: 1600px) {
     .headerText {
         font-size: 3.5vw;
@@ -44,6 +57,10 @@
     .addbook {
         width: 60%;
     }
+
+    .listBook {
+        width: 60%;
+    }
 }
 @media only screen and (max-width: 1200px) {
     .headerText {
@@ -54,6 +71,10 @@
     }
 
     .addbook {
+        width: 65%;
+    }
+
+    .listBook {
         width: 65%;
     }
 }
@@ -68,6 +89,10 @@
     .addbook {
         width: 70%;
     }
+
+    .listBook {
+        width: 70%;
+    }
 }
 @media only screen and (max-width: 800px) {
     .headerText {
@@ -78,6 +103,11 @@
     }
 
     .addbook {
+        width: 75%;
+        margin: 14rem auto 0 auto;
+    }
+
+    .listBook {
         width: 75%;
         margin: 14rem auto 0 auto;
     }
@@ -94,6 +124,11 @@
         width: 80%;
         margin: 13rem auto 0 auto;
     }
+
+    .listBook {
+        width: 80%;
+        margin: 13rem auto 0 auto;
+    }
 }
 @media only screen and (max-width: 360px) {
     .headerText {
@@ -104,6 +139,11 @@
     }
 
     .addbook {
+        width: 90%;
+        margin: 12rem auto 0 auto;
+    }
+
+    .listBook {
         width: 90%;
         margin: 12rem auto 0 auto;
     }

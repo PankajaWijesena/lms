@@ -13,11 +13,11 @@ function ListBook({ booksList }) {
     }, [booksList]);
 
     return (
-        <div style={styles.listBook}>
+        <div className="listBook">
             <Container>
                 <Grid container>
                     {booksListView.map((book, index) => (
-                        <div key={index} style={styles.listBookItem}>
+                        <div key={index} className="listBookItem">
                             <Grid item>
                                 <Book book={book} />
                             </Grid>
@@ -28,20 +28,5 @@ function ListBook({ booksList }) {
         </div>
     );
 }
-
-const styles = {
-    listBook: {
-        display: "flex",
-        flexDirection: "column",
-        width: "50%",
-        margin: "15rem auto"
-    },
-    listBookItem: {
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        margin: "0.5rem auto"
-    }
-};
 
 export default ListBook;
