@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: 15rem auto 0 auto;
+    margin: 15rem auto 10rem auto;
 }
 .listBookItem {
     display: flex;
@@ -110,7 +110,7 @@
 
     .listBook {
         width: 75%;
-        margin: 14rem auto 0 auto;
+        margin: 14rem auto 10rem auto;
     }
 }
 @media only screen and (max-width: 600px) {
@@ -128,7 +128,7 @@
 
     .listBook {
         width: 80%;
-        margin: 13rem auto 0 auto;
+        margin: 13rem auto 10rem auto;
     }
 }
 @media only screen and (max-width: 360px) {
@@ -146,7 +146,7 @@
 
     .listBook {
         width: 90%;
-        margin: 12rem auto 0 auto;
+        margin: 12rem auto 10rem auto;
     }
 }
 
@@ -161,5 +161,10 @@
     .addbook {
         width: 80rem;
         margin: 18rem auto 0 auto;
+    }
+
+    .listBook {
+        width: 80rem;
+        margin: 18rem auto 15rem auto;
     }
 }
