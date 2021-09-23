@@ -15,6 +15,7 @@ function MainHeader({ setBookListOpen, setBookAddOpen }) {
                 <ButtonGroup
                     color="primary"
                     aria-label="outlined primary button group"
+                    size="small"
                     fullWidth
                 >
                     <Button

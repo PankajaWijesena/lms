@@ -16,10 +16,11 @@
 }
 .navBtnGroup {
     width: 50%;
-    border: 0.1rem solid #3f51b5;
+    border: 0.1rem solid;
     background: white;
     border-radius: 5px;
-    box-shadow: 0 0 0.5rem #ffffff;
+    box-shadow: 0 0 0.7rem #151238;
+    padding: 0.04rem;
 }
 
 .addbook {
