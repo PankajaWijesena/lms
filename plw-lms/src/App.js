@@ -16,7 +16,7 @@ function App() {
     useEffect(() => {
         getBooksList();
         return;
-    }, [booksList]);
+    }, [bookListOpen]);
 
     const getBooksList = () => {
         firestore
