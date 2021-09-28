@@ -94,10 +94,17 @@ function AddBook({ onAdd }) {
                     type="submit"
                     color="primary"
                     variant="outlined"
-                    fullWidth
                     role="new-book-submit"
                 >
                     Add Book
+                </Button>
+                <Button
+                    type="reset"
+                    color="secondary"
+                    variant="outlined"
+                    role="new-book-reset"
+                >
+                    Clear
                 </Button>
             </form>
 
