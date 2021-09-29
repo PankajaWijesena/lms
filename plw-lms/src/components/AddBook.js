@@ -16,6 +16,14 @@ function AddBook({ onAdd }) {
         setTimeout(() => setAddSuccess(false), 1000);
     };
 
+    const clearForm = () => {
+        setTitle("");
+        setIsbn("");
+        setAuthor("");
+        setGenre("");
+        setPublisher("");
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -28,11 +36,7 @@ function AddBook({ onAdd }) {
 
         onAdd(newBook);
 
-        setTitle("");
-        setIsbn("");
-        setAuthor("");
-        setGenre("");
-        setPublisher("");
+        clearForm();
 
         bookAdded();
     };
@@ -102,6 +106,7 @@ function AddBook({ onAdd }) {
                     </Button>
                     <Button
                         type="reset"
+                        onClick={clearForm}
                         color="secondary"
                         variant="outlined"
                         role="new-book-clear"
