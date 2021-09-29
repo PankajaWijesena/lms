@@ -16,6 +16,14 @@ function AddBook({ onAdd }) {
         setTimeout(() => setAddSuccess(false), 1000);
     };
 
+    const clearForm = () => {
+        setTitle("");
+        setIsbn("");
+        setAuthor("");
+        setGenre("");
+        setPublisher("");
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -28,11 +36,7 @@ function AddBook({ onAdd }) {
 
         onAdd(newBook);
 
-        setTitle("");
-        setIsbn("");
-        setAuthor("");
-        setGenre("");
-        setPublisher("");
+        clearForm();
 
         bookAdded();
     };
@@ -47,7 +51,7 @@ function AddBook({ onAdd }) {
                     fullWidth
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    style={styles.field}
+                    style={styles.formField}
                     role="new-book-title"
                 />
                 <TextField
@@ -57,7 +61,7 @@ function AddBook({ onAdd }) {
                     fullWidth
                     value={isbn}
                     onChange={(e) => setIsbn(e.target.value)}
-                    style={styles.field}
+                    style={styles.formField}
                     role="new-book-isbn"
                 />
                 <TextField
@@ -67,7 +71,7 @@ function AddBook({ onAdd }) {
                     fullWidth
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
-                    style={styles.field}
+                    style={styles.formField}
                     role="new-book-author"
                 />
                 <TextField
@@ -77,7 +81,7 @@ function AddBook({ onAdd }) {
                     fullWidth
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
-                    style={styles.field}
+                    style={styles.formField}
                     role="new-book-genre"
                 />
                 <TextField
@@ -87,18 +91,30 @@ function AddBook({ onAdd }) {
                     fullWidth
                     value={publisher}
                     onChange={(e) => setPublisher(e.target.value)}
-                    style={styles.field}
+                    style={styles.formField}
                     role="new-book-publisher"
                 />
-                <Button
-                    type="submit"
-                    color="primary"
-                    variant="outlined"
-                    fullWidth
-                    role="new-book-submit"
-                >
-                    Add Book
-                </Button>
+                <div style={styles.formButton}>
+                    <Button
+                        type="submit"
+                        color="primary"
+                        variant="outlined"
+                        role="new-book-submit"
+                        style={styles.formButtonAdd}
+                    >
+                        Add Book
+                    </Button>
+                    <Button
+                        type="reset"
+                        onClick={clearForm}
+                        color="secondary"
+                        variant="outlined"
+                        role="new-book-clear"
+                        style={styles.formButtonClear}
+                    >
+                        Clear
+                    </Button>
+                </div>
             </form>
 
             <Typography
@@ -117,8 +133,19 @@ function AddBook({ onAdd }) {
 }
 
 const styles = {
-    field: {
+    formField: {
         margin: "0 0 1rem 0"
+    },
+    formButton: {
+        display: "flex"
+    },
+    formButtonAdd: {
+        flex: 4,
+        marginRight: "0.3rem"
+    },
+    formButtonClear: {
+        flex: 1,
+        marginLeft: "0.3rem"
     },
     addedSuccess: {
         color: "blue",

@@ -62,15 +62,28 @@ describe("Add New Book Input Fields Labels", () => {
     });
 });
 
-describe("Add New Book Button", () => {
-    test("Should render and form button", () => {
+describe("Add New Book Submit Button", () => {
+    test("Should render a form submit button", () => {
         render(<App />);
         const newBookSubmitElement = screen.getByRole("new-book-submit");
         expect(newBookSubmitElement).toContainHTML("button");
     });
-    test("Form Button Should Be Called 'Add Book'", () => {
+    test("Form button should be labelled 'Add Book'", () => {
         render(<App />);
         const newBookSubmitElement = screen.getByRole("new-book-submit");
         expect(newBookSubmitElement).toHaveTextContent("Add Book");
+    });
+});
+
+describe("Clear New Book Form Fields Button", () => {
+    test("Should render a form clear button", () => {
+        render(<App />);
+        const newBookSubmitElement = screen.getByRole("new-book-clear");
+        expect(newBookSubmitElement).toContainHTML("button");
+    });
+    test("Form button should be labelled 'Clear'", () => {
+        render(<App />);
+        const newBookSubmitElement = screen.getByRole("new-book-clear");
+        expect(newBookSubmitElement).toHaveTextContent("Clear");
     });
 });
