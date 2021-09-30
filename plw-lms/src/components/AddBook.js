@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TextField, Typography, Button } from "@material-ui/core";
+import { TextField, Typography, Button, Modal } from "@material-ui/core";
 
 function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
@@ -9,6 +9,7 @@ function AddBook({ onAdd }) {
     const [genre, setGenre] = useState("");
     const [publisher, setPublisher] = useState("");
 
+    const [confirmModal, setConfirmModal] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
 
     const bookAdded = () => {
@@ -34,9 +35,12 @@ function AddBook({ onAdd }) {
 
         const newBook = { title, isbn, author, genre, publisher };
 
-        onAdd(newBook);
+        // onAdd(newBook);
+        console.log(newBook);
 
         clearForm();
+
+        setConfirmModal(false);
 
         bookAdded();
     };
@@ -96,7 +100,8 @@ function AddBook({ onAdd }) {
                 />
                 <div style={styles.formButton}>
                     <Button
-                        type="submit"
+                        type="button"
+                        onClick={() => setConfirmModal(true)}
                         color="primary"
                         variant="outlined"
                         role="new-book-submit"
@@ -114,6 +119,28 @@ function AddBook({ onAdd }) {
                     >
                         Clear
                     </Button>
+                    <Modal
+                        open={confirmModal}
+                        onClose={() => setConfirmModal(false)}
+                    >
+                        <div style={styles.modalBox}>
+                            <Button
+                                type="submit"
+                                onClick={onSubmit}
+                                color="primary"
+                                variant="contained"
+                            >
+                                Confirm
+                            </Button>
+                            <Button
+                                onClick={() => setConfirmModal(false)}
+                                color="secondary"
+                                variant="contained"
+                            >
+                                Cancel
+                            </Button>
+                        </div>
+                    </Modal>
                 </div>
             </form>
 
@@ -151,6 +178,17 @@ const styles = {
         color: "blue",
         fontFamily: "Roboto",
         margin: "2rem auto"
+    },
+    modalBox: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        background: "white",
+        border: "0.1rem solid #222",
+        borderRadius: "5px",
+        padding: "5rem",
+        boxShadow: 24
     }
 };
 
