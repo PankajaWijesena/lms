@@ -30,6 +30,33 @@
     margin: 15rem auto 0 auto;
 }
 
+.addbookModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 2.5rem;
+    box-shadow: 24;
+}
+.addbookModalBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 1.5rem auto 0 auto;
+}
+.addbookModalConfirm {
+    width: 45%;
+}
+.addbookModalCancel {
+    width: 45%;
+}
+
 .listBook {
     display: flex;
     flex-direction: column;
@@ -58,6 +85,13 @@
     .addbook {
         width: 60%;
     }
+    .addbookModal {
+        width: 50%;
+        padding: 2rem;
+    }
+    .addbookModalBtn {
+        margin: 1.25rem auto 0 auto;
+    }
 
     .listBook {
         width: 60%;
@@ -73,6 +107,13 @@
 
     .addbook {
         width: 65%;
+    }
+    .addbookModal {
+        width: 55%;
+        padding: 2rem;
+    }
+    .addbookModalBtn {
+        margin: 1.25rem auto 0 auto;
     }
 
     .listBook {
@@ -90,6 +131,13 @@
     .addbook {
         width: 70%;
     }
+    .addbookModal {
+        width: 60%;
+        padding: 1.75rem;
+    }
+    .addbookModalBtn {
+        margin: 1rem auto 0 auto;
+    }
 
     .listBook {
         width: 70%;
@@ -106,6 +154,13 @@
     .addbook {
         width: 75%;
         margin: 14rem auto 0 auto;
+    }
+    .addbookModal {
+        width: 65%;
+        padding: 1.5rem;
+    }
+    .addbookModalBtn {
+        margin: 1rem auto 0 auto;
     }
 
     .listBook {
@@ -125,6 +180,13 @@
         width: 80%;
         margin: 13rem auto 0 auto;
     }
+    .addbookModal {
+        width: 70%;
+        padding: 1.25rem;
+    }
+    .addbookModalBtn {
+        margin: 0.8rem auto 0 auto;
+    }
 
     .listBook {
         width: 80%;
@@ -142,6 +204,13 @@
     .addbook {
         width: 90%;
         margin: 12rem auto 0 auto;
+    }
+    .addbookModal {
+        width: 80%;
+        padding: 1rem;
+    }
+    .addbookModalBtn {
+        margin: 0.75rem auto 0 auto;
     }
 
     .listBook {
@@ -161,6 +230,9 @@
     .addbook {
         width: 80rem;
         margin: 18rem auto 0 auto;
+    }
+    .addbookModal {
+        width: 70rem;
     }
 
     .listBook {

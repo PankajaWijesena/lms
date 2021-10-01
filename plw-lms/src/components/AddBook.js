@@ -128,23 +128,27 @@ function AddBook({ onAdd }) {
             </form>
 
             <Modal open={confirmModal} onClose={() => setConfirmModal(false)}>
-                <div style={styles.modalBox}>
+                <div className="addbookModal">
                     <Book book={newBook} />
-                    <Button
-                        type="submit"
-                        onClick={sendBook}
-                        color="primary"
-                        variant="contained"
-                    >
-                        Confirm
-                    </Button>
-                    <Button
-                        onClick={() => setConfirmModal(false)}
-                        color="secondary"
-                        variant="contained"
-                    >
-                        Cancel
-                    </Button>
+                    <div className="addbookModalBtn">
+                        <Button
+                            type="submit"
+                            onClick={sendBook}
+                            color="primary"
+                            variant="contained"
+                            className="addbookModalConfirm"
+                        >
+                            Confirm
+                        </Button>
+                        <Button
+                            onClick={() => setConfirmModal(false)}
+                            color="secondary"
+                            variant="contained"
+                            className="addbookModalCancel"
+                        >
+                            Cancel
+                        </Button>
+                    </div>
                 </div>
             </Modal>
 
@@ -182,17 +186,6 @@ const styles = {
         color: "blue",
         fontFamily: "Roboto",
         margin: "2rem auto"
-    },
-    modalBox: {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        background: "white",
-        border: "0.1rem solid #222",
-        borderRadius: "5px",
-        padding: "5rem",
-        boxShadow: 24
     }
 };
 
