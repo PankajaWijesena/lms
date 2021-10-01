@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-import { TextField, Typography, Button } from "@material-ui/core";
+import { TextField, Typography, Button, Modal } from "@material-ui/core";
+
+import Book from "../components/Book";
 
 function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
@@ -8,7 +10,9 @@ function AddBook({ onAdd }) {
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
     const [publisher, setPublisher] = useState("");
+    const [newBook, setNewBook] = useState({});
 
+    const [confirmModal, setConfirmModal] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
 
     const bookAdded = () => {
@@ -32,11 +36,17 @@ function AddBook({ onAdd }) {
             return;
         }
 
-        const newBook = { title, isbn, author, genre, publisher };
+        setNewBook({ title, isbn, author, genre, publisher });
 
+        setConfirmModal(true);
+    };
+
+    const sendBook = () => {
         onAdd(newBook);
 
         clearForm();
+
+        setConfirmModal(false);
 
         bookAdded();
     };
@@ -116,6 +126,31 @@ function AddBook({ onAdd }) {
                     </Button>
                 </div>
             </form>
+
+            <Modal open={confirmModal} onClose={() => setConfirmModal(false)}>
+                <div className="addbookModal">
+                    <Book book={newBook} />
+                    <div className="addbookModalBtn">
+                        <Button
+                            type="submit"
+                            onClick={sendBook}
+                            color="primary"
+                            variant="contained"
+                            className="addbookModalConfirm"
+                        >
+                            Confirm
+                        </Button>
+                        <Button
+                            onClick={() => setConfirmModal(false)}
+                            color="secondary"
+                            variant="contained"
+                            className="addbookModalCancel"
+                        >
+                            Cancel
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
 
             <Typography
                 variant="body1"
