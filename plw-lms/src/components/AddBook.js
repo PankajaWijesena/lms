@@ -2,12 +2,15 @@ import { useState } from "react";
 
 import { TextField, Typography, Button, Modal } from "@material-ui/core";
 
+import Book from "../components/Book";
+
 function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
     const [isbn, setIsbn] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
     const [publisher, setPublisher] = useState("");
+    const [newBook, setNewBook] = useState({});
 
     const [confirmModal, setConfirmModal] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
@@ -33,10 +36,13 @@ function AddBook({ onAdd }) {
             return;
         }
 
-        const newBook = { title, isbn, author, genre, publisher };
+        setNewBook({ title, isbn, author, genre, publisher });
 
-        // onAdd(newBook);
-        console.log(newBook);
+        setConfirmModal(true);
+    };
+
+    const sendBook = () => {
+        onAdd(newBook);
 
         clearForm();
 
@@ -100,8 +106,7 @@ function AddBook({ onAdd }) {
                 />
                 <div style={styles.formButton}>
                     <Button
-                        type="button"
-                        onClick={() => setConfirmModal(true)}
+                        type="submit"
                         color="primary"
                         variant="outlined"
                         role="new-book-submit"
@@ -119,30 +124,29 @@ function AddBook({ onAdd }) {
                     >
                         Clear
                     </Button>
-                    <Modal
-                        open={confirmModal}
-                        onClose={() => setConfirmModal(false)}
-                    >
-                        <div style={styles.modalBox}>
-                            <Button
-                                type="submit"
-                                onClick={onSubmit}
-                                color="primary"
-                                variant="contained"
-                            >
-                                Confirm
-                            </Button>
-                            <Button
-                                onClick={() => setConfirmModal(false)}
-                                color="secondary"
-                                variant="contained"
-                            >
-                                Cancel
-                            </Button>
-                        </div>
-                    </Modal>
                 </div>
             </form>
+
+            <Modal open={confirmModal} onClose={() => setConfirmModal(false)}>
+                <div style={styles.modalBox}>
+                    <Book book={newBook} />
+                    <Button
+                        type="submit"
+                        onClick={sendBook}
+                        color="primary"
+                        variant="contained"
+                    >
+                        Confirm
+                    </Button>
+                    <Button
+                        onClick={() => setConfirmModal(false)}
+                        color="secondary"
+                        variant="contained"
+                    >
+                        Cancel
+                    </Button>
+                </div>
+            </Modal>
 
             <Typography
                 variant="body1"
