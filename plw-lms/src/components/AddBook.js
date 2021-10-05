@@ -12,9 +12,14 @@ function AddBook({ onAdd }) {
     const [publisher, setPublisher] = useState("");
     const [newBook, setNewBook] = useState({});
 
+    const [formIncompleteErr, setFormIncompleteErr] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
     const [addSuccess, setAddSuccess] = useState(false);
 
+    const formIncompleteMsg = () => {
+        setFormIncompleteErr(true);
+        setTimeout(() => setFormIncompleteErr(false), 1000);
+    };
     const bookAdded = () => {
         setAddSuccess(true);
         setTimeout(() => setAddSuccess(false), 1000);
@@ -32,7 +37,7 @@ function AddBook({ onAdd }) {
         e.preventDefault();
 
         if (!title || !isbn || !author || !genre || !publisher) {
-            alert("Please Add All the Infomation About the Book!");
+            formIncompleteMsg();
             return;
         }
 
@@ -107,12 +112,12 @@ function AddBook({ onAdd }) {
                 <div style={styles.formButton}>
                     <Button
                         type="submit"
-                        color="primary"
+                        color={formIncompleteErr ? "secondary" : "primary"}
                         variant="outlined"
                         role="new-book-submit"
                         style={styles.formButtonAdd}
                     >
-                        Add Book
+                        {formIncompleteErr ? "Complete All Fields" : "Add Book"}
                     </Button>
                     <Button
                         type="reset"
