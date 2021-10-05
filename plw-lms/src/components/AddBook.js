@@ -140,7 +140,7 @@ function AddBook({ onAdd }) {
                             type="submit"
                             onClick={sendBook}
                             color="primary"
-                            variant="contained"
+                            variant="outlined"
                             className="addbookModalConfirm"
                         >
                             Confirm
@@ -148,7 +148,7 @@ function AddBook({ onAdd }) {
                         <Button
                             onClick={() => setConfirmModal(false)}
                             color="secondary"
-                            variant="contained"
+                            variant="outlined"
                             className="addbookModalCancel"
                         >
                             Cancel
