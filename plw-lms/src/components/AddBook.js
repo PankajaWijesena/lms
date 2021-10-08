@@ -12,12 +12,17 @@ function AddBook({ onAdd }) {
     const [publisher, setPublisher] = useState("");
     const [newBook, setNewBook] = useState({});
 
-    const [confirmModal, setConfirmModal] = useState(false);
-    const [addSuccess, setAddSuccess] = useState(false);
+    const [formIncompleteErr, setFormIncompleteErr] = useState(false);
+    const [confirmMsg, setConfirmMsg] = useState(false);
+    const [addBookSuccess, setAddBookSuccess] = useState(false);
 
+    const formIncompleteMsg = () => {
+        setFormIncompleteErr(true);
+        setTimeout(() => setFormIncompleteErr(false), 1000);
+    };
     const bookAdded = () => {
-        setAddSuccess(true);
-        setTimeout(() => setAddSuccess(false), 1000);
+        setAddBookSuccess(true);
+        setTimeout(() => setAddBookSuccess(false), 1000);
     };
 
     const clearForm = () => {
@@ -32,13 +37,13 @@ function AddBook({ onAdd }) {
         e.preventDefault();
 
         if (!title || !isbn || !author || !genre || !publisher) {
-            alert("Please Add All the Infomation About the Book!");
+            formIncompleteMsg();
             return;
         }
 
         setNewBook({ title, isbn, author, genre, publisher });
 
-        setConfirmModal(true);
+        setConfirmMsg(true);
     };
 
     const sendBook = () => {
@@ -46,13 +51,24 @@ function AddBook({ onAdd }) {
 
         clearForm();
 
-        setConfirmModal(false);
+        setConfirmMsg(false);
 
         bookAdded();
     };
 
     return (
         <div className="addbook">
+            {addBookSuccess && (
+                <div style={styles.bookAddedSuccess}>
+                    <Typography
+                        style={styles.bookAddedSuccessText}
+                        variant="h5"
+                        color="primary"
+                    >
+                        New Book Added Successfully!
+                    </Typography>
+                </div>
+            )}
             <form onSubmit={onSubmit}>
                 <TextField
                     id="filled-basic"
@@ -104,15 +120,16 @@ function AddBook({ onAdd }) {
                     style={styles.formField}
                     role="new-book-publisher"
                 />
+
                 <div style={styles.formButton}>
                     <Button
                         type="submit"
-                        color="primary"
+                        color={formIncompleteErr ? "secondary" : "primary"}
                         variant="outlined"
                         role="new-book-submit"
                         style={styles.formButtonAdd}
                     >
-                        Add Book
+                        {formIncompleteErr ? "Complete All Fields" : "Add Book"}
                     </Button>
                     <Button
                         type="reset"
@@ -127,23 +144,24 @@ function AddBook({ onAdd }) {
                 </div>
             </form>
 
-            <Modal open={confirmModal} onClose={() => setConfirmModal(false)}>
+            <Modal open={confirmMsg} onClose={() => setConfirmMsg(false)}>
                 <div className="addbookModal">
                     <Book book={newBook} />
+
                     <div className="addbookModalBtn">
                         <Button
                             type="submit"
                             onClick={sendBook}
                             color="primary"
-                            variant="contained"
+                            variant="outlined"
                             className="addbookModalConfirm"
                         >
                             Confirm
                         </Button>
                         <Button
-                            onClick={() => setConfirmModal(false)}
+                            onClick={() => setConfirmMsg(false)}
                             color="secondary"
-                            variant="contained"
+                            variant="outlined"
                             className="addbookModalCancel"
                         >
                             Cancel
@@ -151,18 +169,6 @@ function AddBook({ onAdd }) {
                     </div>
                 </div>
             </Modal>
-
-            <Typography
-                variant="body1"
-                color="primary"
-                style={{
-                    ...styles.addedSuccess,
-                    visibility: addSuccess ? "visible" : "hidden"
-                }}
-                role="new-book-add-success"
-            >
-                The Book is Added to the Database
-            </Typography>
         </div>
     );
 }
@@ -182,10 +188,15 @@ const styles = {
         flex: 1,
         marginLeft: "0.3rem"
     },
-    addedSuccess: {
-        color: "blue",
-        fontFamily: "Roboto",
-        margin: "2rem auto"
+    bookAddedSuccess: {
+        border: "1px dotted blue",
+        borderRadius: "5px",
+        padding: "1rem 1rem",
+        marginBottom: "3rem"
+    },
+    bookAddedSuccessText: {
+        textAlign: "center",
+        fontStyle: "italic"
     }
 };
 
