@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-
 import firestore from "./firestore";
-
 import MainHeader from "./components/MainHeader";
 import AddBook from "./components/AddBook";
 import ListBook from "./components/ListBook";
-
 import "./App.css";
 
 function App() {
@@ -37,14 +34,14 @@ function App() {
     };
 
     return (
-        <div className="App">
+        <>
             <MainHeader
                 setBookAddOpen={setBookAddOpen}
                 setBookListOpen={setBookListOpen}
             />
             {bookAddOpen && <AddBook onAdd={addBook} />}
             {bookListOpen && <ListBook booksList={booksList} />}
-        </div>
+        </>
     );
 }
 
