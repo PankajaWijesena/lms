@@ -1,8 +1,7 @@
 import { useState } from "react";
-
-import { TextField, Typography, Button, Modal } from "@material-ui/core";
-
-import Book from "../components/Book";
+import { Container, TextField, Button, makeStyles } from "@material-ui/core";
+import AddBookSuccess from "./AddBookSuccess";
+import AddBookConfirmModal from "./AddBookConfirmModal";
 
 function AddBook({ onAdd }) {
     const [title, setTitle] = useState("");
@@ -13,8 +12,10 @@ function AddBook({ onAdd }) {
     const [newBook, setNewBook] = useState({});
 
     const [formIncompleteErr, setFormIncompleteErr] = useState(false);
-    const [confirmMsg, setConfirmMsg] = useState(false);
+    const [confirmVisible, setConfirmVisible] = useState(false);
     const [addBookSuccess, setAddBookSuccess] = useState(false);
+
+    const classes = useStyles();
 
     const formIncompleteMsg = () => {
         setFormIncompleteErr(true);
@@ -24,7 +25,6 @@ function AddBook({ onAdd }) {
         setAddBookSuccess(true);
         setTimeout(() => setAddBookSuccess(false), 1000);
     };
-
     const clearForm = () => {
         setTitle("");
         setIsbn("");
@@ -43,7 +43,7 @@ function AddBook({ onAdd }) {
 
         setNewBook({ title, isbn, author, genre, publisher });
 
-        setConfirmMsg(true);
+        setConfirmVisible(true);
     };
 
     const sendBook = () => {
@@ -51,83 +51,79 @@ function AddBook({ onAdd }) {
 
         clearForm();
 
-        setConfirmMsg(false);
+        setConfirmVisible(false);
 
         bookAdded();
     };
 
     return (
-        <div className="addbook">
-            {addBookSuccess && (
-                <div style={styles.bookAddedSuccess}>
-                    <Typography
-                        style={styles.bookAddedSuccessText}
-                        variant="h5"
-                        color="primary"
-                    >
-                        New Book Added Successfully!
-                    </Typography>
-                </div>
-            )}
+        <Container maxWidth="sm" className={classes.container}>
+            {addBookSuccess && <AddBookSuccess />}
+
             <form onSubmit={onSubmit}>
                 <TextField
                     id="filled-basic"
                     label="Title"
-                    variant="filled"
+                    variant="outlined"
+                    size="small"
                     fullWidth
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    style={styles.formField}
+                    className={classes.formField}
                     role="new-book-title"
                 />
                 <TextField
                     id="filled-basic"
                     label="ISBN"
-                    variant="filled"
+                    variant="outlined"
+                    size="small"
                     fullWidth
                     value={isbn}
                     onChange={(e) => setIsbn(e.target.value)}
-                    style={styles.formField}
+                    className={classes.formField}
                     role="new-book-isbn"
                 />
                 <TextField
                     id="filled-basic"
                     label="Author"
-                    variant="filled"
+                    variant="outlined"
+                    size="small"
                     fullWidth
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
-                    style={styles.formField}
+                    className={classes.formField}
                     role="new-book-author"
                 />
                 <TextField
                     id="filled-basic"
                     label="Genre"
-                    variant="filled"
+                    variant="outlined"
+                    size="small"
                     fullWidth
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
-                    style={styles.formField}
+                    className={classes.formField}
                     role="new-book-genre"
                 />
                 <TextField
                     id="filled-basic"
                     label="Publisher"
-                    variant="filled"
+                    variant="outlined"
+                    size="small"
                     fullWidth
                     value={publisher}
                     onChange={(e) => setPublisher(e.target.value)}
-                    style={styles.formField}
+                    className={classes.formField}
                     role="new-book-publisher"
                 />
 
-                <div style={styles.formButton}>
+                <div className={classes.formButtons}>
                     <Button
                         type="submit"
                         color={formIncompleteErr ? "secondary" : "primary"}
                         variant="outlined"
                         role="new-book-submit"
-                        style={styles.formButtonAdd}
+                        className={classes.formButtonAdd}
                     >
                         {formIncompleteErr ? "Complete All Fields" : "Add Book"}
                     </Button>
@@ -137,67 +133,41 @@ function AddBook({ onAdd }) {
                         color="secondary"
                         variant="outlined"
                         role="new-book-clear"
-                        style={styles.formButtonClear}
+                        className={classes.formButtonClear}
                     >
                         Clear
                     </Button>
                 </div>
             </form>
 
-            <Modal open={confirmMsg} onClose={() => setConfirmMsg(false)}>
-                <div className="addbookModal">
-                    <Book book={newBook} />
-
-                    <div className="addbookModalBtn">
-                        <Button
-                            type="submit"
-                            onClick={sendBook}
-                            color="primary"
-                            variant="outlined"
-                            className="addbookModalConfirm"
-                        >
-                            Confirm
-                        </Button>
-                        <Button
-                            onClick={() => setConfirmMsg(false)}
-                            color="secondary"
-                            variant="outlined"
-                            className="addbookModalCancel"
-                        >
-                            Cancel
-                        </Button>
-                    </div>
-                </div>
-            </Modal>
-        </div>
+            <AddBookConfirmModal
+                visible={confirmVisible}
+                setVisible={setConfirmVisible}
+                confirm={sendBook}
+                newBook={newBook}
+            />
+        </Container>
     );
 }
 
-const styles = {
-    formField: {
-        margin: "0 0 1rem 0"
+const useStyles = makeStyles((theme) => ({
+    container: {
+        padding: "12rem 2rem 0 2rem"
     },
-    formButton: {
+    formField: {
+        margin: "0 0 2rem 0"
+    },
+    formButtons: {
         display: "flex"
     },
     formButtonAdd: {
         flex: 4,
-        marginRight: "0.3rem"
+        marginRight: "0.5rem"
     },
     formButtonClear: {
         flex: 1,
-        marginLeft: "0.3rem"
-    },
-    bookAddedSuccess: {
-        border: "1px dotted blue",
-        borderRadius: "5px",
-        padding: "1rem 1rem",
-        marginBottom: "3rem"
-    },
-    bookAddedSuccessText: {
-        textAlign: "center",
-        fontStyle: "italic"
+        marginLeft: "0.5rem"
     }
-};
+}));
 
 export default AddBook;
